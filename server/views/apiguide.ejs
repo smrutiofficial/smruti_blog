@@ -1,0 +1,113 @@
+<!-- views/apiGuide.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        code {
+            color: #d14;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Guide</h1>
+
+    <h2>User Authentication</h2>
+    <h3>Register a User</h3>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Endpoint:</strong> /auth/register</p>
+    <p><strong>Description:</strong> Registers a new user with name, email, and password.</p>
+    <pre><code>Request Body:
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+Response Body:
+{
+  "token": "your_jwt_token_here"
+}</code></pre>
+
+    <h3>Login a User</h3>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Endpoint:</strong> /auth/login</p>
+    <p><strong>Description:</strong> Logs in a user and returns a JWT token.</p>
+    <pre><code>Request Body:
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+Response Body:
+{
+  "token": "your_jwt_token_here"
+}</code></pre>
+
+    <h2>Posts</h2>
+    <h3>Create a Post (Authenticated)</h3>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Endpoint:</strong> /posts</p>
+    <p><strong>Description:</strong> Creates a new post. Requires authentication.</p>
+    <pre><code>Request Headers:
+x-auth-token: your_jwt_token_here
+Request Body:
+{
+  "title": "My First Post",
+  "body": "This is the content of my first post."
+}
+Response Body:
+{
+  "_id": "unique_post_id",
+  "title": "My First Post",
+  "body": "This is the content of my first post.",
+  "author": "user_id",
+  "createdAt": "2024-10-08T12:34:56.789Z"
+}</code></pre>
+
+    <h3>Get All Posts</h3>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>Endpoint:</strong> /posts</p>
+    <p><strong>Description:</strong> Fetches all posts with the author's information.</p>
+
+    <h2>Comments</h2>
+    <h3>Create a Comment (Authenticated)</h3>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Endpoint:</strong> /comments</p>
+    <p><strong>Description:</strong> Adds a comment to a specific post. Requires authentication.</p>
+    <pre><code>Request Headers:
+x-auth-token: your_jwt_token_here
+Request Body:
+{
+  "body": "This is a great post!",
+  "postId": "unique_post_id"
+}
+Response Body:
+{
+  "_id": "unique_comment_id",
+  "body": "This is a great post!",
+  "author": "user_id",
+  "post": "unique_post_id",
+  "createdAt": "2024-10-08T12:34:56.789Z"
+}</code></pre>
+
+    <h3>Get All Comments for a Post</h3>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>Endpoint:</strong> /comments/:postId</p>
+    <p><strong>Description:</strong> Fetches all comments for a specific post.</p>
+
+</body>
+</html>
+

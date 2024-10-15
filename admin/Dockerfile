@@ -1,6 +1,7 @@
+# Base image
 FROM node:20
 
-WORKDIR /usr/src/client
+WORKDIR /usr/src/admin
 
 COPY package*.json ./
 
@@ -10,6 +11,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 4000
 
 CMD ["npm", "run", "start"]
