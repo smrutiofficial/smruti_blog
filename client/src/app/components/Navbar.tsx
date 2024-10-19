@@ -15,11 +15,7 @@ const Navbar = () => {
             Home
           </a>
         </li>
-        <li>
-          <a href="/about" className="text-white hover:text-gray-300">
-            About
-          </a>
-        </li>
+       
         <li>
           <a href="/services" className="text-white hover:text-gray-300">
             Resources
@@ -33,6 +29,11 @@ const Navbar = () => {
         <li>
           <a href="/contact" className="text-white hover:text-gray-300">
             Feedback
+          </a>
+        </li>
+        <li>
+          <a href="/about" className="text-white hover:text-gray-300">
+            About
           </a>
         </li>
       </ul>
