@@ -1,101 +1,86 @@
-import Image from "next/image";
+import Footer from "./components/footer";
+import Navbar from "./components/Navbar";
+import Post from "./components/post";
+import Postrb from "./components/post_rb";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <div className="w-full h-6 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+     <Navbar/>
+      <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
+        <h2 className="text-4xl font-bold mb-4">Become a Better Linux User</h2>
+        <p className="text-xl text-gray-400 mb-6 w-full px-6 text-center">
+        Kernel Hub is your go-to resource for Linux tips, open-source news, and community discussions. We&apos;re passionate about empowering users with knowledge and fostering a collaborative environment.!
+        </p>
+        <div className="flex items-center rounded-md">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="w-[400px] py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button className="bg-[#6a6ff6] text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">
+            Subscribe
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="mt-8 font-mono text-sm">
+          <span className="text-green-500">➜</span>{" "}
+          <span className="text-blue-500">~</span>{" "}
+          <span className="text-yellow-500">$</span> Stay powered with our
+          updates!
+        </div>
+      </div>
+
+      {/* Recent blog posts */}
+      <div className="container mx-auto px-4 py-4">
+        <h3 className="text-2xl font-bold mb-4">Recent Blog Posts</h3>
+       <Postrb/>
+       <h3 className="text-2xl font-bold mb-4 mt-20">All Blog Posts</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+
+      </div>
+        <hr className="w-full mt-[5rem] mb-10"/>
+      <div className="flex justify-between items-center space-x-4 mt-8">
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+          </svg>
+          Previous
+        </button>
+        <div className="flex space-x-2">
+          {[1, 2, 3,"...",8,9,10].map((page) => (
+            <button
+              key={page}
+              className={`px-3 py-1 ${page === 1 ? 'bg-[#6a6ff6]' : ''} text-white rounded-md hover:bg-gray-600 transition duration-300`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+          </svg>
+        </button>
+      </div>
+      </div>
+      <div className="w-full h-4 mt-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+<Footer/>
+    </>
   );
 }
