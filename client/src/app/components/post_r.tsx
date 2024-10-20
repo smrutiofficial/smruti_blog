@@ -55,7 +55,7 @@ interface PostProps {
                 {postData[pid].tags.map((tag) => (
                   <button
                     key={tag}
-                    className="border border-[#6a6ff6] text-[#6a6ff6] px-2 py-1 mt-4 mr-2 rounded-md text-sm"
+                    className="border border-[#AAFFA9] text-[#AAFFA9] px-2 py-1 mt-4 mr-2 rounded-md text-sm"
                   >
                     {tag}
                   </button>

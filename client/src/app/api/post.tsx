@@ -107,7 +107,7 @@ const postData = [
       timestamp: "2023-06-19T14:00:00Z",
       comments: 11,
       image: "https://picsum.photos/800/600?random=10",
-      tags: ["Ubuntu", "apt", "Package Management"],
+      tags: ["Ubuntu", "apt"],
     },
     {
       id: 11,

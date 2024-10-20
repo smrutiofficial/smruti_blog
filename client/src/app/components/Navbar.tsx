@@ -11,7 +11,7 @@ const Navbar = () => {
         </a>
         <ul className="flex space-x-4">
           <li>
-            <a href="/" className="text-white border-orange-400 border-b-4">
+            <a href="/" className="text-white border-[#11FFBD] border-b-4">
               Home
             </a>
           </li>
@@ -38,7 +38,7 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex flex-row gap-4">
-          <button className=" border-2 font-medium rounded-md px-4 border-[#6a6ff6] bg-transparent text-white hover:bg-[#6a6ff6] hover:text-white transition duration-300">
+          <button className=" border-[0.25rem] font-medium rounded-md px-4 border-[#AAFFA9] bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300">
             Logout
           </button>
           <div className="h-9 w-9 overflow-hidden flex justify-center items-center ">

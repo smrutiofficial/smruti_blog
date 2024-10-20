@@ -14,9 +14,9 @@ const footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#11FFBD]"
             />
-            <button className="bg-[#6a6ff6] text-white px-6 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">
+            <button className="bg-[#AAFFA9] text-gray-700 px-6 py-2 rounded-r-md hover:bg-[#11FFBD] transition duration-300">
               Subscribe
             </button>
           </div>

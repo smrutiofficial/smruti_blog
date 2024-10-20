@@ -35,25 +35,26 @@ const Post = () => {
         className="flex flex-col items-center justify-center flex-wrap mb-6 relative
         after:content-[''] after:absolute after:h-full 
         after:w-full after:bg-gradient-to-r 
-        after:via-transparent 
-        after:odd:from-blue-500 
-        after:even:from-transparent
-        after:even:to-orange-500 
-        after:odd:to-transparent 
+
+        after:odd:via-transparent 
+        after:odd:from-gray-900 
+        after:even:from-gray-900
+        after:even:to-gray-900
+        after:odd:to-gray-900 
+
         after:t-1/2 after:l-1/2 
-        after:translate-1/2 after:-z-10 p-1 after:rounded-md 
-        
+        after:translate-1/2 after:-z-10 p-[0.5rem] after:rounded-md 
         before:content-[''] before:absolute before:h-full 
         before:w-full before:bg-gradient-to-r  
-        before:via-transparent 
-      before:odd:from-blue-500 
-        before:even:from-transparent
-        before:even:to-orange-500 
-        before:odd:to-transparent 
-        
-        
+
+        before:even:via-transparent 
+      before:odd:from-[#A5FECB] 
+      before:even:from-[#A5FECB]
+      before:even:to-[#A5FECB]
+      before:odd:to-[#A5FECB]
+
         before:t-1/2 before:l-1/2 
-        before:translate-1/2 before:-z-10 before:rounded-md before:blur-md 
+        before:translate-1/2 before:-z-10 before:rounded-md before:blur-sm
         "
       >
           {" "}
@@ -77,7 +78,8 @@ const Post = () => {
               {postItem.tags.map((tag) => (
                 <button
                   key={tag}
-                  className="border border-[#6a6ff6] text-[#6a6ff6] px-2 py-1 mt-4 mr-2 rounded-md text-sm"
+                  className="border border-[#AAFFA9] text-[#AAFFA9]
+                             px-2 py-1 mt-4 mr-2 rounded-md text-sm"
                 >
                   {tag}
                 </button>
