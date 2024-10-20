@@ -118,7 +118,7 @@ const postData = [
       timestamp: "2023-06-23T10:15:00Z",
       comments: 13,
       image: "https://picsum.photos/800/600?random=11",
-      tags: ["systemd", "Linux", "Service Management"],
+      tags: ["systemd", "Linux"],
     },
     {
       id: 12,

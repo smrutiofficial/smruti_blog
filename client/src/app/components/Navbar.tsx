@@ -11,7 +11,7 @@ const Navbar = () => {
         </a>
         <ul className="flex space-x-4">
           <li>
-            <a href="/" className="text-white hover:text-gray-300">
+            <a href="/" className="text-white border-orange-400 border-b-4">
               Home
             </a>
           </li>

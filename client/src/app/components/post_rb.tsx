@@ -27,7 +27,14 @@ const post_rb = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative
+        after:content-[''] after:absolute after:h-full 
+        after:w-full after:bg-gradient-to-r after:from-blue-500 after:via-transparent  after:to-orange-500 after:t-1/2 after:l-1/2 
+        after:translate-1/2 after:-z-10 p-1 after:rounded-md
+        
+        before:content-[''] before:absolute before:h-full 
+        before:w-full before:bg-gradient-to-r  before:from-blue-500 before:via-transparent before:to-orange-500 before:t-1/2 before:l-1/2 
+        before:translate-1/2 before:-z-10 before:rounded-md before:blur-md">
         {postData[0] && (
         <div key={postData[0].id} className="bg-gray-900 rounded-lg shadow-md p-4 max-h-[40rem]">
           <div className="bg-gray-700 w-full h-[22rem] rounded-md overflow-hidden">
