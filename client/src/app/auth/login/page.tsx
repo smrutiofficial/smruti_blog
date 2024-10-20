@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import axios from "axios";
-import Bg from "../../image/undraw_programming_re_kg9v.svg"
+import Bg from "../../image/undraw_programming_re_kg9v.svg";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function Login() {
         { email, password }
       );
       localStorage.setItem("token", response.data.token);
-      router.push('/');
+      router.push("/");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.response?.data?.message || "Login failed");
@@ -32,8 +33,8 @@ export default function Login() {
       <div>
         <div className="flex flex-row">
           <div className="w-1/2 h-[100vh] bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
-          {/* image  */}
-         <Image src={Bg} alt="bg-image"></Image>
+            {/* image  */}
+            <Image src={Bg} alt="bg-image"></Image>
           </div>
           <div className="w-1/2 flex flex-col justify-center">
             <div className="flex flex-col items-center">
@@ -44,7 +45,10 @@ export default function Login() {
               <p className="text-[1.2rem]">Please login to your account</p>
             </div>
             <div className="flex items-center justify-center mt-8">
-              <form className="flex flex-col w-1/2 gap-4" onSubmit={handleLogin}>
+              <form
+                className="flex flex-col w-1/2 gap-4"
+                onSubmit={handleLogin}
+              >
                 <input
                   type="email"
                   placeholder="Email"
@@ -59,16 +63,31 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
                 />
-                <p className="flex items-center justify-center text-gray-400 font-medium">Forgot Password?</p>
-                <button type="submit" className="py-3 px-4 rounded-lg bg-[#AAFFA9] text-gray-800 font-medium">
+                <p className="flex items-center justify-center text-gray-400 font-medium">
+                  Forgot Password?
+                </p>
+                <button
+                  type="submit"
+                  className="py-3 px-4 rounded-lg bg-[#AAFFA9] text-gray-800 font-medium"
+                >
                   Login
                 </button>
-                <p className="flex items-center justify-center text-gray-400 text-sm font-medium mt-8">Or Continue With</p>
-                <button type="submit" className="py-3 px-4 rounded-lg bg-red-500 text-white font-medium">
+                <p className="flex items-center justify-center text-gray-400 text-sm font-medium mt-8">
+                  Or Continue With
+                </p>
+                <button
+                  type="submit"
+                  className="py-3 px-4 rounded-lg bg-red-500 text-white font-medium"
+                >
                   Sign with Google
                 </button>
-                <p className="flex items-center justify-center text-gray-300 font-medium mt-4">Don&apos;t have an account ?&nbsp;<span className="text-[#AAFFA9]">Register</span></p>
-             
+                <p className="flex items-center justify-center text-gray-300 font-medium mt-4">
+                  Don&apos;t have an account ?&nbsp;
+                  <span className="text-[#AAFFA9]">
+                    <Link href="/auth/register">Register</Link>
+                  </span>
+                </p>
+
                 {error && <p className="text-red-500 mt-4">{error}</p>}
               </form>
             </div>

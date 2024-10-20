@@ -5,7 +5,8 @@ import axios from "axios";
 // import { useRouter } from 'next/router';
 import Bg from "../../image/undraw_programming_re_kg9v.svg";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ export default function Register() {
         password,
       });
       localStorage.setItem("token", res.data.token);
-      router.push('/auth/login');
+      router.push("/auth/login");
       // router.push('/');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -107,7 +108,9 @@ export default function Register() {
                 </button>
                 <p className="flex items-center justify-center text-gray-300 font-medium mt-4">
                   Don&apos;t have an account ?&nbsp;
-                  <span className="text-[#AAFFA9]">Login</span>
+                  <span className="text-[#AAFFA9]">
+                    <Link href="/auth/login">Login</Link>
+                  </span>
                 </p>
                 {error && <p className="text-red-500 mt-4">{error}</p>}
               </form>
