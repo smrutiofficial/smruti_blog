@@ -1,15 +1,28 @@
-'use client'; // Ensure this component runs on the client side
+'use client';
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "./components/footer";
 import Navbar from "./components/Navbar";
 import Post from "./components/post";
 import Postrb from "./components/post_rb";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token"); 
+    if (!token) {
+      router.push("/auth/login");
+    } else {
+      router.push("/"); 
+    }
+  }, [router]);
+
   return (
     <>
       <div className="w-full h-8 bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
-        <p className="text-gray-600 font-bold">Ubuntu <span className="text-red-500 shadow-teal-400">24.10 </span>loaded with new features 👋🏻! let's view new updates .🥳</p>
+        <p className="text-gray-600 font-medium">Ubuntu <span className="text-red-500 shadow-teal-400">24.10 </span>loaded with new features 👋🏻! let&apos;s view new updates .🥳</p>
       </div>
      <Navbar/>
       <div className="container mx-auto px-4 py-8 flex flex-col justify-center items-center">

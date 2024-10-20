@@ -1,6 +1,7 @@
 import { FaArrowTrendUp } from "react-icons/fa6";
 // import Image from "next/image";
 import postData from "../api/post";
+import Image from "next/image";
 
 const Post = () => {
   function timeAgo(date: Date) {
@@ -61,7 +62,7 @@ const Post = () => {
           {" "}
           <div className="w-full h-[13rem]">
             <div className="overflow-hidden bg-gray-700 h-full rounded-tl-lg rounded-tr-lg">
-              <img
+              <Image
                 src={postItem.image}
                 alt={`Cover for ${postItem.title}`}
                 className="w-full h-full object-cover"

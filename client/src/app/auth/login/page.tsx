@@ -4,13 +4,13 @@ import { useState } from "react";
 import axios from "axios";
 import Bg from "../../image/undraw_programming_re_kg9v.svg"
 import Image from "next/image";
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ export default function Login() {
         { email, password }
       );
       localStorage.setItem("token", response.data.token);
-      // router.push('/');
+      router.push('/');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.response?.data?.message || "Login failed");
@@ -67,8 +67,9 @@ export default function Login() {
                 <button type="submit" className="py-3 px-4 rounded-lg bg-red-500 text-white font-medium">
                   Sign with Google
                 </button>
-                <p className="flex items-center justify-center text-gray-300 font-medium mt-4">Don't have an account ?&nbsp;<span className="text-[#AAFFA9]">Register</span></p>
-
+                <p className="flex items-center justify-center text-gray-300 font-medium mt-4">Don&apos;t have an account ?&nbsp;<span className="text-[#AAFFA9]">Register</span></p>
+             
+                {error && <p className="text-red-500 mt-4">{error}</p>}
               </form>
             </div>
           </div>

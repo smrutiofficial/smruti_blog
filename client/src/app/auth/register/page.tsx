@@ -5,6 +5,7 @@ import axios from "axios";
 // import { useRouter } from 'next/router';
 import Bg from "../../image/undraw_programming_re_kg9v.svg";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ export default function Register() {
     password: "",
   });
   const [error, setError] = useState("");
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ export default function Register() {
         password,
       });
       localStorage.setItem("token", res.data.token);
+      router.push('/auth/login');
       // router.push('/');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -65,14 +67,14 @@ export default function Register() {
                 onSubmit={handleRegister}
               >
                 <input
-                  name="Name"
+                  name="name"
                   type="Name"
                   placeholder="Email"
                   onChange={handleChange}
                   className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
                 />
                 <input
-                  name="Email"
+                  name="email"
                   type="email"
                   placeholder="Email"
                   onChange={handleChange}
@@ -104,9 +106,10 @@ export default function Register() {
                   Sign with Google
                 </button>
                 <p className="flex items-center justify-center text-gray-300 font-medium mt-4">
-                  Don't have an account ?&nbsp;
+                  Don&apos;t have an account ?&nbsp;
                   <span className="text-[#AAFFA9]">Login</span>
                 </p>
+                {error && <p className="text-red-500 mt-4">{error}</p>}
               </form>
             </div>
           </div>

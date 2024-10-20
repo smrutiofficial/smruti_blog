@@ -1,6 +1,8 @@
 import React from "react";
 import postData from "../api/post";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import Image from "next/image";
+
 
 interface PostProps {
     pid: number;
@@ -39,7 +41,7 @@ interface PostProps {
             <div className="w-1/2 py-4 pl-4 overflow-hidden">
               {/* Content for the first div */}
               <div className=" bg-gray-700 h-[17.5rem] overflow-hidden object-cover rounded-tl-lg rounded-bl-lg">
-                <img
+                <Image
                   src={postData[pid].image}
                   alt={`Cover for ${postData[pid].title}`}
                   className="w-full h-full"

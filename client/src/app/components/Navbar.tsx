@@ -1,8 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import ProfilePic from "../image/profile-pic.png";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("token");
+    // Optionally redirect to the login page or home
+    router.push("/auth/login");
+  };
+
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -38,18 +48,20 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex flex-row gap-4">
-          <button className=" border-[0.25rem] font-medium rounded-md px-4 border-[#AAFFA9] bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300">
+          <button
+            onClick={handleLogout}
+            className=" border-[0.25rem] font-medium rounded-md px-4 border-[#AAFFA9] bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300"
+          >
             Logout
           </button>
           <div className="h-9 w-9 overflow-hidden flex justify-center items-center ">
-          <Image
-            src={ProfilePic}
-            alt="User Profile"
-            className="rounded-full object-cover"
-            layout="fixed"
-          />
+            <Image
+              src={ProfilePic}
+              alt="User Profile"
+              className="rounded-full object-cover"
+              layout="fixed"
+            />
           </div>
-    
         </div>
       </div>
     </nav>

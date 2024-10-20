@@ -2,6 +2,7 @@ import React from "react";
 import Postr from "./post_r";
 import postData from "../api/post";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import Image from "next/image";
 
 const post_rb = () => {
 
@@ -39,7 +40,7 @@ const post_rb = () => {
         {postData[0] && (
         <div key={postData[0].id} className="bg-gray-900 rounded-lg shadow-md p-4 max-h-[40rem]">
           <div className="bg-gray-700 w-full h-[22rem] rounded-md overflow-hidden">
-          <img src={postData[0].image} alt={`Cover for ${postData[0].title}`} className="w-full h-full object-cover" />
+          <Image src={postData[0].image} alt={`Cover for ${postData[0].title}`} className="w-full h-full object-cover" />
           </div>
 
           <div className="p-4">
