@@ -44,6 +44,8 @@ interface PostProps {
                 <Image
                   src={postData[pid].image}
                   alt={`Cover for ${postData[pid].title}`}
+                  width={100}
+                  height={100}
                   className="w-full h-full"
                 />
               </div>

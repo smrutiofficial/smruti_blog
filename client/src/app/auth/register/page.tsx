@@ -50,9 +50,9 @@ export default function Register() {
     <>
       <div>
         <div className="flex flex-row">
-          <div className="w-1/2 h-[100vh] bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
+          <div className="w-1/2 h-[100vh] overflow-hidden bg-gradient-to-b from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
             {/* image  */}
-            <Image src={Bg} alt="bg-image"></Image>
+            <Image src={Bg} alt="bg-image" className="scale-125"></Image>
           </div>
           <div className="w-1/2 flex flex-col justify-center">
             <div className="flex flex-col items-center">

@@ -65,6 +65,8 @@ const Post = () => {
               <Image
                 src={postItem.image}
                 alt={`Cover for ${postItem.title}`}
+                width={100}
+                height={100}
                 className="w-full h-full object-cover"
               />
             </div>

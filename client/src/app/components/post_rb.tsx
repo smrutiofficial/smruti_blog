@@ -40,7 +40,12 @@ const post_rb = () => {
         {postData[0] && (
         <div key={postData[0].id} className="bg-gray-900 rounded-lg shadow-md p-4 max-h-[40rem]">
           <div className="bg-gray-700 w-full h-[22rem] rounded-md overflow-hidden">
-          <Image src={postData[0].image} alt={`Cover for ${postData[0].title}`} className="w-full h-full object-cover" />
+          <Image 
+          src={postData[0].image} 
+          alt={`Cover for ${postData[0].title}`} 
+          width={100}
+          height={100}
+          className="w-full h-full object-cover" />
           </div>
 
           <div className="p-4">

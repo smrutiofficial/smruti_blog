@@ -69,7 +69,7 @@ export default function Home() {
           {[1, 2, 3,"...",8,9,10].map((page) => (
             <button
               key={page}
-              className={`px-3 py-1 ${page === 1 ? 'bg-[#AAFFA9] text-gray-800 font-bold' : ''} text-white rounded-md hover:bg-gray-600 transition duration-300`}
+              className={`px-3 py-1 ${page === 1 ? 'bg-[#AAFFA9] text-gray-800 font-bold' : 'text-white rounded-md hover:bg-gray-600 transition duration-300'}`}
             >
               {page}
             </button>
