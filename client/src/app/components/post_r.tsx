@@ -1,5 +1,6 @@
 import React from "react";
 import postData from "../api/post";
+import { FaArrowTrendUp } from "react-icons/fa6";
 
 interface PostProps {
     pid: number;
@@ -50,7 +51,14 @@ interface PostProps {
                 className="bg-gray-800 p-4 rounded-tr-lg rounded-br-lg"
               >
                 {/* Content for the first column */}
-                <h1 className="text-xl mb-2 font-bold h-16 overflow-hidden">{postData[pid].title}</h1>
+                <div className="flex flex-row gap-4 justify-between items-center">
+                <h1 className="text-lg mb-2 font-bold h-16 py-2 overflow-hidden">
+                  {postData[pid].title}
+                </h1>
+                <p className="text-3xl">
+                  <FaArrowTrendUp />
+                </p>
+              </div>
                 <p className="h-18 overflow-hidden">{postData[pid].content}</p>
                 {postData[pid].tags.map((tag) => (
                   <button

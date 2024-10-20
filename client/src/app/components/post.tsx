@@ -1,3 +1,4 @@
+import { FaArrowTrendUp } from "react-icons/fa6";
 // import Image from "next/image";
 import postData from "../api/post";
 
@@ -31,8 +32,8 @@ const Post = () => {
         //   className="flex flex-col flex-wrap mb-6 border-4 rounded-md border-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-border animate-gradient-border bg-[length:200%_200%]"
         // >
         <div
-        key={postItem.id}
-        className="flex flex-col items-center justify-center flex-wrap mb-6 relative
+          key={postItem.id}
+          className="flex flex-col items-center justify-center flex-wrap mb-6 relative
         after:content-[''] after:absolute after:h-full 
         after:w-full after:bg-gradient-to-r 
 
@@ -56,7 +57,7 @@ const Post = () => {
         before:t-1/2 before:l-1/2 
         before:translate-1/2 before:-z-10 before:rounded-md before:blur-sm
         "
-      >
+        >
           {" "}
           <div className="w-full h-[13rem]">
             <div className="overflow-hidden bg-gray-700 h-full rounded-tl-lg rounded-tr-lg">
@@ -69,9 +70,14 @@ const Post = () => {
           </div>
           <div className="w-full">
             <div className="bg-gray-800 p-4 rounded-bl-lg rounded-br-lg h-64">
-              <h1 className="text-lg mb-2 font-bold h-16 py-2 overflow-hidden">
-                {postItem.title}
-              </h1>
+              <div className="flex flex-row gap-4 justify-center items-center">
+                <h1 className="text-lg mb-2 font-bold h-16 py-2 overflow-hidden">
+                  {postItem.title}
+                </h1>
+                <p className="text-3xl">
+                  <FaArrowTrendUp />
+                </p>
+              </div>
               <p className="text-sm text-gray-400 h-16 overflow-hidden">
                 {postItem.content}
               </p>

@@ -1,6 +1,7 @@
 import React from "react";
 import Postr from "./post_r";
 import postData from "../api/post";
+import { FaArrowTrendUp } from "react-icons/fa6";
 
 const post_rb = () => {
 
@@ -42,9 +43,14 @@ const post_rb = () => {
           </div>
 
           <div className="p-4">
-            <h1 className="text-xl mb-2 font-bold h-16 overflow-hidden ">
-              {postData[0].title}
-            </h1>
+          <div className="flex flex-row gap-4 justify-between items-center">
+                <h1 className="text-lg mb-2 font-bold h-16 py-2 overflow-hidden">
+                  {postData[0].title}
+                </h1>
+                <p className="text-3xl">
+                  <FaArrowTrendUp />
+                </p>
+              </div>
             <p className="text-md h-12 overflow-hidden">
               {postData[0].content}
             </p>
