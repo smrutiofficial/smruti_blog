@@ -3,6 +3,8 @@
 import { useState } from "react";
 import axios from "axios";
 // import { useRouter } from 'next/router';
+import Bg from "../../image/undraw_programming_re_kg9v.svg";
+import Image from "next/image";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -24,10 +26,11 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        { name, email, password }
-      );
+      const res = await axios.post("http://localhost:5000/api/auth/register", {
+        name,
+        email,
+        password,
+      });
       localStorage.setItem("token", res.data.token);
       // router.push('/');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,34 +44,74 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl">Register</h1>
-      <form className="space-y-4" onSubmit={handleRegister}>
-        <input
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="input"
-        />
-        <button type="submit" className="btn">
-          Register
-        </button>
-      </form>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
-    </div>
+    <>
+      <div>
+        <div className="flex flex-row">
+          <div className="w-1/2 h-[100vh] bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
+            {/* image  */}
+            <Image src={Bg} alt="bg-image"></Image>
+          </div>
+          <div className="w-1/2 flex flex-col justify-center">
+            <div className="flex flex-col items-center">
+              <h1 className="text-[3rem] font-bold pb-8">
+                Kernel <span className="text-[#AAFFA9]"> Hub</span>
+              </h1>
+              <p className="text-[2.8rem] font-medium">Create an Account</p>
+              <p className="text-[1.2rem]">Please register to get started</p>
+            </div>
+            <div className="flex items-center justify-center mt-8">
+              <form
+                className="flex flex-col w-1/2 gap-4"
+                onSubmit={handleRegister}
+              >
+                <input
+                  name="Name"
+                  type="Name"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
+                />
+                <input
+                  name="Email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
+                />
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
+                />
+                <p className="flex items-center justify-center text-gray-400 font-medium">
+                  Forgot Password?
+                </p>
+                <button
+                  type="submit"
+                  className="py-3 px-4 rounded-lg bg-[#AAFFA9] text-gray-800 font-medium"
+                >
+                  Register
+                </button>
+                <p className="flex items-center justify-center text-gray-400 text-sm font-medium mt-8">
+                  Or Continue With
+                </p>
+                <button
+                  type="submit"
+                  className="py-3 px-4 rounded-lg bg-red-500 text-white font-medium"
+                >
+                  Sign with Google
+                </button>
+                <p className="flex items-center justify-center text-gray-300 font-medium mt-4">
+                  Don't have an account ?&nbsp;
+                  <span className="text-[#AAFFA9]">Login</span>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
