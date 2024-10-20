@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full h-8 bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
+      <div className="w-full h-8 bg-gradient-to-r from-[#AAFFA9] to-emerald-500 flex justify-center items-center">
         <p className="text-gray-600 font-medium">Ubuntu <span className="text-red-500 shadow-teal-400">24.10 </span>loaded with new features 👋🏻! let&apos;s view new updates .🥳</p>
       </div>
      <Navbar/>
@@ -36,7 +36,7 @@ export default function Home() {
             placeholder="Enter your email"
             className="w-[400px] py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#11FFBD]"
           />
-          <button className="bg-[#AAFFA9] text-gray-700 font-medium px-4 py-2 rounded-r-md hover:bg-[#11FFBD] transition duration-300">
+          <button className="bg-emerald-300 text-gray-700 font-medium px-4 py-2 rounded-r-md hover:bg-[#11FFBD] transition duration-300">
             Subscribe
           </button>
         </div>
@@ -83,7 +83,7 @@ export default function Home() {
         </button>
       </div>
       </div>
-      <div className="w-full h-4 mt-2 bg-gradient-to-r from-[#AAFFA9] to-[#11FFBD]"></div>
+      <div className="w-full h-4 mt-2 bg-gradient-to-r from-[#AAFFA9] to-emerald-500"></div>
 <Footer/>
     </>
   );

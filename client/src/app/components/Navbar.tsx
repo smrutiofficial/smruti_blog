@@ -50,7 +50,7 @@ const Navbar = () => {
         <div className="flex flex-row gap-4">
           <button
             onClick={handleLogout}
-            className=" border-[0.25rem] font-medium rounded-md px-4 border-[#AAFFA9] bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300"
+            className=" border-[0.25rem] font-medium rounded-md px-4 border-emerald-300 bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300"
           >
             Logout
           </button>
