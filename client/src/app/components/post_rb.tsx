@@ -1,85 +1,104 @@
-import React from 'react';
-import Postr from './post_r';
+import React from "react";
+import Postr from "./post_r";
+import postData from "../api/post";
 
 const post_rb = () => {
+
+  function timeAgo(date: Date) {
+    const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return `${interval} year${interval > 1 ? 's' : ''} ago`;
+  
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return `${interval} month${interval > 1 ? 's' : ''} ago`;
+  
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return `${interval} day${interval > 1 ? 's' : ''} ago`;
+  
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return `${interval} hour${interval > 1 ? 's' : ''} ago`;
+  
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return `${interval} minute${interval > 1 ? 's' : ''} ago`;
+  
+    return `${Math.floor(seconds)} seconds ago`;
+  }
+
   return (
     <div>
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-900 rounded-lg shadow-md p-4">
-            <div className="bg-gray-700 w-full h-[62%] rounded-md">
-            </div>
-           
-           <div className="p-4">
-           <h1 className="text-xl mb-2 font-bold ">
-          Seamlessly Connect Your Android Phone and Linux Using
-          GSConnect
-        </h1>
-        <p className='text-md'>
-          Let&apos;s improve the &apos;relation&apos; between your
-          Linux computer and the Android smartphone.{" "}
-        </p>
-        <button className="border border-[#6a6ff6] text-[#6a6ff6] px-2 py-1 mt-4 mr-2 rounded-md text-sm">
-          Linux
-        </button>
-        <button className="border border-[#6a6ff6] text-[#6a6ff6] px-2 py-1 mt-4 rounded-md text-sm">
-          Open Source
-        </button>
-        <div className="flex items-center mt-4 text-sm text-gray-100">
-          <span className="flex items-center mr-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-              />
-            </svg>
-            <p className='text-gray-400'>5 comments</p>
-          </span>
-          <span className="flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <p className='text-gray-400'>2 days ago</p> 
-          </span>
-        </div>
-
-           </div>
-           
-           
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {postData[0] && (
+        <div key={postData[0].id} className="bg-gray-900 rounded-lg shadow-md p-4 max-h-[40rem]">
+          <div className="bg-gray-700 w-full h-[22rem] rounded-md overflow-hidden">
+          <img src={postData[0].image} alt={`Cover for ${postData[0].title}`} className="w-full h-full object-cover" />
           </div>
-          
-          <div className="bg-gray-900 rounded-lg shadow-md">
-            <div className="flex flex-col justify-center items-center">
-              {/*  */}
-              <Postr/>
-              <Postr/>
-              {/*  */}
+
+          <div className="p-4">
+            <h1 className="text-xl mb-2 font-bold h-16 overflow-hidden ">
+              {postData[0].title}
+            </h1>
+            <p className="text-md h-12 overflow-hidden">
+              {postData[0].content}
+            </p>
+            {postData[0].tags.map((tag) => (
+              <button key={tag} className="border border-[#6a6ff6] text-[#6a6ff6] px-2 py-1 mt-4 mr-2 rounded-md text-sm">
+                {tag}
+              </button>
+            ))}
+            <div className="flex items-center mt-4 text-sm text-gray-100">
+              <span className="flex items-center mr-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                  />
+                </svg>
+                <p className="text-gray-400">{postData[0].comments} comments</p>
+              </span>
+              <span className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <p className="text-gray-400">
+                {timeAgo(new Date(postData[0].timestamp))}
+                </p>
+              </span>
             </div>
           </div>
         </div>
+        )}
 
-
+        <div className="bg-gray-900 rounded-lg shadow-md ">
+          <div className="flex flex-col justify-center items-center">
+            {/*  */}
+            <Postr pid={1} /> 
+            <Postr pid={2} /> 
+            {/*  */}
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default post_rb
+export default post_rb;

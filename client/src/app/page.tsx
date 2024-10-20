@@ -1,3 +1,5 @@
+'use client'; // Ensure this component runs on the client side
+
 import Footer from "./components/footer";
 import Navbar from "./components/Navbar";
 import Post from "./components/post";
@@ -37,19 +39,6 @@ export default function Home() {
        <Postrb/>
        <h3 className="text-2xl font-bold mb-4 mt-20">All Blog Posts</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-
-        <Post />
-        <Post />
-        <Post />
         <Post />
 
       </div>
