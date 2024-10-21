@@ -1,26 +1,27 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios"; // Import axios for making API requests
+import axios from "axios";
 
 const Page = () => {
   const [profile, setProfile] = useState({
     name: "",
     email: "",
-    password: "", // You might want to handle password differently, e.g., not showing it initially
+    password: "",
   });
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState<string | null>(null); // Error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null); // State to handle success message
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem("token"); // Adjusted to your token storage key
+      const token = localStorage.getItem("token");
 
       if (token) {
         try {
           const response = await axios.get("http://localhost:5000/api/auth/me", {
             headers: {
-              "x-auth-token": token, // Include the token in the header
+              "x-auth-token": token,
             },
           });
 
@@ -36,7 +37,7 @@ const Page = () => {
       } else {
         setError("No token found.");
       }
-      setLoading(false); // Set loading to false after data fetching
+      setLoading(false);
     };
 
     fetchProfile();
@@ -50,18 +51,29 @@ const Page = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    localStorage.setItem("profile", JSON.stringify(profile)); // Save updated profile to localStorage
-    console.log("Profile updated:", profile); // Log or handle updated profile as needed
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const token = localStorage.getItem("token"); // Get token from local storage
+    try {
+      await axios.put("http://localhost:5000/api/auth/me", profile, {
+        headers: {
+          "x-auth-token": token, // Include the token in the header
+        },
+      });
+      setSuccess("Profile updated successfully!"); // Set success message
+    } catch (err) {
+      console.error(err);
+      setError("Failed to update profile."); // Handle error
+    }
   };
 
   if (loading) {
-    return <p>Loading...</p>; // Display loading state
+    return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>; // Display error message if any
+    return <p>{error}</p>;
   }
 
   return (
@@ -88,7 +100,7 @@ const Page = () => {
             placeholder="Email"
           />
           <input
-            type="password" // Keep this as password type for security
+            type="password"
             name="password"
             value={profile.password}
             onChange={handleInputChange}
@@ -96,12 +108,13 @@ const Page = () => {
             placeholder="Password"
           />
           <button 
-            type="submit" // Ensure the button is of type "submit"
+            type="submit"
             className="py-3 px-4 rounded-lg bg-gradient-to-r from-[#AAFFA9] to-emerald-500 text-gray-900 font-bold"
           >
             UPDATE
           </button>
         </form>
+        {success && <p className="text-green-500">{success}</p>} {/* Display success message */}
       </div>
     </div>
   );

@@ -49,7 +49,8 @@ export default function Home() {
             placeholder="Enter your email"
             className="w-[400px] py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#11FFBD]"
           />
-          <button className="bg-emerald-300 text-gray-700 font-medium px-4 py-2 rounded-r-md hover:bg-[#11FFBD] transition duration-300">
+          <button className="text-gray-700 font-medium px-4 py-2 rounded-r-md 
+          bg-gradient-to-r from-[#AAFFA9] to-emerald-400 transition duration-300">
             Subscribe
           </button>
         </div>
@@ -97,7 +98,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <Post />
         </div>
-        <hr className="w-full mt-[5rem] mb-10 opacity-50" />
+        <hr className="w-full mt-[2rem] mb-2 opacity-50" />
         <div className="flex justify-between items-center space-x-4 mt-8">
           <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center">
             <svg
