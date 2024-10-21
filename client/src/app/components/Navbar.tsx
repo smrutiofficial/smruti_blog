@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import ProfilePic from "../image/profile-pic.png";
@@ -58,8 +59,9 @@ const Navbar = () => {
             <Image
               src={ProfilePic}
               alt="User Profile"
-              className="rounded-full object-cover border-2 border-emerald-300"
+              className="rounded-full object-cover border-2 border-emerald-300 cursor-pointer"
               layout="fixed"
+              onClick={() => router.push('/profile')}
             />
           </div>
         </div>

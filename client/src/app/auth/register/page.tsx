@@ -70,7 +70,7 @@ export default function Register() {
                 <input
                   name="name"
                   type="Name"
-                  placeholder="Email"
+                  placeholder="Name"
                   onChange={handleChange}
                   className="input py-3 px-4 rounded-lg bg-gray-800 text-gray-200"
                 />
