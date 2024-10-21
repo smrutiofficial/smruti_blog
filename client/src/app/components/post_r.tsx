@@ -1,18 +1,41 @@
-import React from "react";
-import postData from "../api/post";
+import React, { useEffect, useState } from "react";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import Image from "next/image";
 
+// Define the type for Post data
+interface PostData {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  tags: string[];
+  comments: number;
+  timestamp: string; // or Date if needed
+}
 
 interface PostProps {
     pid: number;
   }
   
   const Postr = ({ pid }: PostProps) => {
-    if (!postData[pid]) {
-      return <div>Post not found</div>;
-    }
+    const [postData, setPostData] = useState<PostData | null>(null);
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/posts?sort=newest`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setPostData(data.posts[pid]);
+        } catch (error) {
+          console.error('There was a problem with the fetch operation:', error);
+        }
+      };
+
+      fetchData();
+    }, [pid]);
 
     function timeAgo(date: Date) {
         const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
@@ -36,14 +59,14 @@ interface PostProps {
       }
     return (
       <>
-        {postData[pid] && (
-          <div key={postData[pid].id} className="flex flex-row ">
+        {postData && (
+          <div key={postData.id} className="flex flex-row ">
             <div className="w-1/2 py-4 pl-4 overflow-hidden">
               {/* Content for the first div */}
               <div className=" bg-gray-700 h-[17.5rem] overflow-hidden object-cover rounded-tl-lg rounded-bl-lg">
                 <Image
-                  src={postData[pid].image}
-                  alt={`Cover for ${postData[pid].title}`}
+                  src={postData.image}
+                  alt={`Cover for ${postData.title}`}
                   width={100}
                   height={100}
                   className="w-full h-full"
@@ -57,14 +80,14 @@ interface PostProps {
                 {/* Content for the first column */}
                 <div className="flex flex-row gap-4 justify-between items-center">
                 <h1 className="text-lg mb-2 font-bold h-16 py-2 overflow-hidden">
-                  {postData[pid].title}
+                  {postData.title}
                 </h1>
                 <p className="text-3xl">
                   <FaArrowTrendUp />
                 </p>
               </div>
-                <p className="h-18 overflow-hidden">{postData[pid].content}</p>
-                {postData[pid].tags.map((tag) => (
+                <p className="h-18 overflow-hidden">{postData.content}</p>
+                {postData.tags.map((tag: string) => (
                   <button
                     key={tag}
                     className="border border-[#AAFFA9] text-[#AAFFA9] px-2 py-1 mt-4 mr-2 rounded-md text-sm"
@@ -88,7 +111,7 @@ interface PostProps {
                         d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                       />
                     </svg>
-                    <p className="text-gray-400">{postData[pid].comments} comments</p>
+                    <p className="text-gray-400">{postData.comments} comments</p>
                   </span>
                   <span className="flex items-center">
                     <svg
@@ -106,7 +129,7 @@ interface PostProps {
                       />
                     </svg>
                     <p className="text-gray-400">
-                    {timeAgo(new Date(postData[0].timestamp))}
+                    {timeAgo(new Date(postData.timestamp))}
                     </p>
                   </span>
                 </div>

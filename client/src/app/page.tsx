@@ -11,13 +11,13 @@ export default function Home() {
   // const [activeButton, setActiveButton] = useState("All");
   const [activeButton, setActiveButton] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [total_post,SetTotal_post]=useState(1);
-
+  const [total_post, SetTotal_post] = useState(1);
+  const [postData, setPostData] = useState([]); // Add this line to define setPostData
 
   const buttons = ["All", "Ubuntu", "Fedora", "Open Source", "Vim", "Tutorial"];
-const totalpage = (message: string) => {
-  SetTotal_post(Number(message)); // Convert the string to a number
-}
+  const totalpage = (message: string) => {
+    SetTotal_post(Number(message)); // Convert the string to a number
+  };
   const handleClick = (buttonName: string) => {
     setActiveButton(buttonName);
   };
@@ -31,11 +31,35 @@ const totalpage = (message: string) => {
     } else {
       router.push("/");
     }
-  }, [router]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/posts?sort=${activeButton || 'newest'}&page=${currentPage}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log(data.posts);
+        
+        setPostData(data.posts);
+        SetTotal_post(data.totalPages);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+
+    fetchData();
+  }, [router,currentPage, activeButton]);
 
   const handlePageChange = async (newPage: number) => {
     setCurrentPage(newPage);
-    await router.push(`/?page=${newPage}`);
+    await router.push(`/?page=${newPage}&sort=${activeButton}`);
+  };
+
+  const handleSortChange = async (sortOption: string) => {
+    setActiveButton(sortOption);
+    await router.push(`/?page=1&sort=${sortOption}`);
   };
 
   return (
@@ -60,8 +84,10 @@ const totalpage = (message: string) => {
             placeholder="Enter your email"
             className="w-[400px] py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#11FFBD]"
           />
-          <button className="text-gray-700 font-medium px-4 py-2 rounded-r-md 
-          bg-gradient-to-r from-[#AAFFA9] to-emerald-400 transition duration-300">
+          <button
+            className="text-gray-700 font-medium px-4 py-2 rounded-r-md 
+          bg-gradient-to-r from-[#AAFFA9] to-emerald-400 transition duration-300"
+          >
             Subscribe
           </button>
         </div>
@@ -95,23 +121,25 @@ const totalpage = (message: string) => {
             ))}
           </div>
           <div className="rounded-md w-[15rem] h-10 flex flex-row justify-center items-center gap-2">
-          <p className="w-auto font-medium">Sort by : </p>
-          <select
-            className="form-select w-1/2 mt-1 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-100 border border-[#AAFFA9] py-1 px-2 rounded-md bg-gray-800"
-            defaultValue="newest"
-          >
-            <option value="newest">Newest</option>
-            <option value="popular">Popular</option>
-            <option value="a-z">A-Z</option>
-          </select>
+            <p className="w-auto font-medium">Sort by : </p>
+            <select
+              className="form-select w-1/2 mt-1 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-100 border border-[#AAFFA9] py-1 px-2 rounded-md bg-gray-800"
+              onChange={(e) => handleSortChange(e.target.value)}
+              defaultValue="newest"
+            >
+              <option value="newest">Newest</option>
+              <option value="popular">Popular</option>
+              <option value="a-z">A-Z</option>
+            </select>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <Post currentPage={currentPage} totalpage={totalpage}/>
+          <Post postData={postData} totalpage={totalpage} />
         </div>
         <hr className="w-full mt-[2rem] mb-2 opacity-50" />
         <div className="flex justify-between items-center space-x-4 mt-8">
-          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center" 
+          <button
+            className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center"
             onClick={async () => {
               if (currentPage > 1) {
                 await handlePageChange(currentPage - 1);
@@ -133,7 +161,7 @@ const totalpage = (message: string) => {
             Previous
           </button>
           <div className="flex space-x-2">
-            {Array.from({length: total_post}, (_, i) => i + 1).map((page) => (
+            {Array.from({ length: total_post }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
                 className={`px-3 py-1 ${
@@ -147,12 +175,13 @@ const totalpage = (message: string) => {
               </button>
             ))}
           </div>
-          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center" 
-          onClick={async () => {
-            if (currentPage < total_post) {
-              await handlePageChange(currentPage + 1);
-            }
-          }}
+          <button
+            className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center"
+            onClick={async () => {
+              if (currentPage < total_post) {
+                await handlePageChange(currentPage + 1);
+              }
+            }}
           >
             Next
             <svg

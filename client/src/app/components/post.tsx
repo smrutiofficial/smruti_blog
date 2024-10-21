@@ -1,6 +1,6 @@
 import { FaArrowTrendUp } from "react-icons/fa6";
 import Image from "next/image";
-import { useEffect, useState} from 'react';
+// import { useEffect, useState } from 'react'; // Added useState hook
 
 // Define the type for Post data
 interface PostData {
@@ -14,31 +14,13 @@ interface PostData {
 }
 
 interface PostProps {
-  currentPage: number;
+  postData: PostData[];
   totalpage: (message: string) => void; // Add this line
 }
 
-const Post = ({currentPage,totalpage}: PostProps) => {
-  const [postData, setPostData] = useState<PostData[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/api/posts?page=${currentPage}&limit=12`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setPostData(data.posts);
-        // console.log(data.totalPages);
-        totalpage(data.totalPages);
-      } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-      }
-    };
-
-    fetchData();
-  }, [currentPage,totalpage]);
+const Post = ({postData}: PostProps) => {
+  // Removed useState hook as it's not needed anymore
+console.log(postData);
 
   function timeAgo(date: Date) {
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);

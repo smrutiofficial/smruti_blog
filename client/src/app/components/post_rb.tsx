@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Postr from "./post_r";
-import postData from "../api/post";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import Image from "next/image";
 
-const post_rb = () => {
+interface PostData {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  tags: string[];
+  comments: number;
+  timestamp: string; // or Date if needed
+}
+
+const Post_rb = () => {
+  const [postData, setPostData] = useState<PostData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/posts?sort=newest');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setPostData(data.posts);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function timeAgo(date: Date) {
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
@@ -37,7 +64,7 @@ const post_rb = () => {
         before:content-[''] before:absolute before:h-full 
         before:w-full before:bg-gradient-to-r  before:from-[#AAFFA9] before:via-transparent before:to-emerald-500 before:t-1/2 before:l-1/2 
         before:translate-1/2 before:-z-10 before:rounded-md before:blur-md">
-        {postData[0] && (
+        {postData.length > 0 && (
         <div key={postData[0].id} className="bg-gray-900 rounded-lg shadow-md p-4 max-h-[40rem]">
           <div className="bg-gray-700 w-full h-[22rem] rounded-md overflow-hidden">
           <Image 
@@ -120,4 +147,4 @@ const post_rb = () => {
   );
 };
 
-export default post_rb;
+export default Post_rb;
