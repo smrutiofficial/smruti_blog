@@ -1,9 +1,45 @@
 import { FaArrowTrendUp } from "react-icons/fa6";
-// import Image from "next/image";
-import postData from "../api/post";
 import Image from "next/image";
+import { useEffect, useState} from 'react';
 
-const Post = () => {
+// Define the type for Post data
+interface PostData {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  tags: string[];
+  comments: number;
+  timestamp: string; // or Date if needed
+}
+
+interface PostProps {
+  currentPage: number;
+  totalpage: (message: string) => void; // Add this line
+}
+
+const Post = ({currentPage,totalpage}: PostProps) => {
+  const [postData, setPostData] = useState<PostData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/posts?page=${currentPage}&limit=12`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setPostData(data.posts);
+        // console.log(data.totalPages);
+        totalpage(data.totalPages);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+
+    fetchData();
+  }, [currentPage,totalpage]);
+
   function timeAgo(date: Date) {
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
 
@@ -27,11 +63,7 @@ const Post = () => {
   }
   return (
     <>
-      {postData.map((postItem) => (
-        // <div
-        //   key={postItem.id}
-        //   className="flex flex-col flex-wrap mb-6 border-4 rounded-md border-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-border animate-gradient-border bg-[length:200%_200%]"
-        // >
+      {postData.map((postItem: PostData) => (
         <div
           key={postItem.id}
           className="flex flex-col items-center justify-center flex-wrap mb-6 relative
@@ -127,7 +159,7 @@ const Post = () => {
                     />
                   </svg>
                   <p className="text-gray-400">
-                    {timeAgo(new Date(postData[0].timestamp))}
+                    {timeAgo(new Date(postItem.timestamp))}
                   </p>
                 </span>
               </div>

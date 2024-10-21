@@ -8,10 +8,16 @@ import Post from "./components/post";
 import Postrb from "./components/post_rb";
 
 export default function Home() {
+  // const [activeButton, setActiveButton] = useState("All");
   const [activeButton, setActiveButton] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [total_post,SetTotal_post]=useState(1);
+
 
   const buttons = ["All", "Ubuntu", "Fedora", "Open Source", "Vim", "Tutorial"];
-
+const totalpage = (message: string) => {
+  SetTotal_post(Number(message)); // Convert the string to a number
+}
   const handleClick = (buttonName: string) => {
     setActiveButton(buttonName);
   };
@@ -26,6 +32,11 @@ export default function Home() {
       router.push("/");
     }
   }, [router]);
+
+  const handlePageChange = async (newPage: number) => {
+    setCurrentPage(newPage);
+    await router.push(`/?page=${newPage}`);
+  };
 
   return (
     <>
@@ -96,11 +107,17 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <Post />
+          <Post currentPage={currentPage} totalpage={totalpage}/>
         </div>
         <hr className="w-full mt-[2rem] mb-2 opacity-50" />
         <div className="flex justify-between items-center space-x-4 mt-8">
-          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center">
+          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center" 
+            onClick={async () => {
+              if (currentPage > 1) {
+                await handlePageChange(currentPage - 1);
+              }
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-2"
@@ -116,20 +133,27 @@ export default function Home() {
             Previous
           </button>
           <div className="flex space-x-2">
-            {[1, 2, 3, "...", 8, 9, 10].map((page) => (
+            {Array.from({length: total_post}, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
                 className={`px-3 py-1 ${
-                  page === 1
+                  page === currentPage
                     ? "bg-[#AAFFA9] text-gray-800 font-bold"
                     : "text-white rounded-md hover:bg-gray-600 transition duration-300"
                 }`}
+                onClick={() => handlePageChange(page)}
               >
                 {page}
               </button>
             ))}
           </div>
-          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center">
+          <button className="px-4 py-2 border border-[#AAFFA9] bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-300 flex items-center" 
+          onClick={async () => {
+            if (currentPage < total_post) {
+              await handlePageChange(currentPage + 1);
+            }
+          }}
+          >
             Next
             <svg
               xmlns="http://www.w3.org/2000/svg"
