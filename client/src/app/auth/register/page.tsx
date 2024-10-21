@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 // import { useRouter } from 'next/router';
-import Bg from "../../image/undraw_programming_re_kg9v.svg";
+import Bg from "../../image/berny-transformed.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -50,9 +50,9 @@ export default function Register() {
     <>
       <div>
         <div className="flex flex-row">
-          <div className="w-1/2 h-[100vh] overflow-hidden bg-gradient-to-b from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
+          <div className="w-1/2 h-[100vh] overflow-hiddenflex justify-center items-center">
             {/* image  */}
-            <Image src={Bg} alt="bg-image" className="scale-125"></Image>
+            <Image src={Bg} alt="bg-image" className="w-full h-full object-cover"></Image>
           </div>
           <div className="w-1/2 flex flex-col justify-center">
             <div className="flex flex-col items-center">

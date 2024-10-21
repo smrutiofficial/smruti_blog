@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import Bg from "../../image/undraw_trip_re_f724(1).svg";
+import Bg from "../../image/work.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -34,7 +34,7 @@ export default function Login() {
         <div className="flex flex-row">
           <div className="w-1/2 h-[100vh] overflow-hidden bg-gradient-to-b from-[#AAFFA9] to-[#11FFBD] flex justify-center items-center">
             {/* image  */}
-            <Image src={Bg} alt="bg-image" className="scale-150"></Image>
+            <Image src={Bg} alt="bg-image" className="h-full w-full object-cover"></Image>
           </div>
           <div className="w-1/2 flex flex-col justify-center">
             <div className="flex flex-col items-center">

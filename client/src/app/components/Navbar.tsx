@@ -47,18 +47,18 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 justify-center items-center">
           <button
             onClick={handleLogout}
-            className=" border-[0.25rem] font-medium rounded-md px-4 border-emerald-300 bg-transparent text-white hover:bg-[#AAFFA9] hover:text-gray-700 transition duration-300"
+            className="button-64"
           >
-            Logout
+             <span className="text-sm py-2 px-6 font-medium hover:text-gray-700 hover:font-medium">Logout</span>
           </button>
           <div className="h-9 w-9 overflow-hidden flex justify-center items-center ">
             <Image
               src={ProfilePic}
               alt="User Profile"
-              className="rounded-full object-cover"
+              className="rounded-full object-cover border-2 border-emerald-300"
               layout="fixed"
             />
           </div>

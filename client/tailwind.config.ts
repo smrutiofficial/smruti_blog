@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,22 +7,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      keyframes: {
-        "gradient-move": {
-          "0%": { "background-position": "0% 50%" },
-          "50%": { "background-position": "100% 50%" },
-          "100%": { "background-position": "0% 50%" },
-        },
-      },
-      animation: {
-        'gradient-border': 'gradient-move 3s ease infinite',
-      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    
+  ],
 };
+
 export default config;
